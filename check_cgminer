@@ -68,11 +68,11 @@ sub checkTemp {
 
 	my $status = 'OK';
 	
-	if ($temp > $warn) {
+	if ($temp >= $warn) {
 		$ret->{retVal} = 1;
 		$status = "Warning";
 	}
-	if ($temp > $crit) {
+	if ($temp >= $crit) {
 		$ret->{retVal} = 2;
 		$status = "Critical";
 	}
@@ -104,11 +104,11 @@ sub checkHash {
 
 	my $status = 'OK';
 	
-	if ($hash < $warn) {
+	if ($hash <= $warn) {
 		$ret->{retVal} = 1;
 		$status = "Warning";
 	}
-	if ($hash < $crit) {
+	if ($hash <= $crit) {
 		$ret->{retVal} = 2;
 		$status = "Critical";
 	}
