@@ -117,33 +117,12 @@ MAIN: {
 	my $host;
 	my $cmd;
 	my $param;
-	my $tempWarn;
-	my $tempCrit;
-	my $hashWarn;
-	my $hashCrit;
 	GetOptions(
 		"host|h=s" => \$host,
 		"command|c|cmd=s" => \$cmd,
 		"parameter|p|param=s" => \$param,
-		"tempWarn|tw=i" => \$tempWarn,
-		"tempCrit|tc=i" => \$tempCrit,
-		"hashWarn|hw=f" => \$hashWarn,
-		"hashCrit|hc=f" => \$hashCrit,
 	);
 
 	my $minerData = minerCmd($host, $cmd, $param);
 	print Dumper($minerData);
-
-	my $ret = {
-		retVal => 3,
-		retString => 'Unknown'
-	};
-
-	if ($tempWarn && $tempCrit) {
-		$ret = checkTemp($minerData, $tempWarn, $tempCrit);
-	} elsif ($hashCrit && $hashWarn) {
-		$ret = checkHash($minerData, $hashWarn, $hashCrit);
-	}
-	print $ret->{retString} . "\n";
-	exit $ret->{retVal};
 }
